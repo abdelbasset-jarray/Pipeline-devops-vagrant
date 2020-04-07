@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
     jenkins.vm.provision "shell", path: "install_jenkins.sh"
   end
 
-  # serveur dev
+# serveur dev
   config.vm.define "srvdev-pipeline" do |srvdev|
     srvdev.vm.box = "debian/buster64"
     srvdev.vm.hostname = "srvdev-pipeline"
@@ -93,12 +93,11 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--cpus", "1"]
     end
     config.vm.provision "shell", inline: <<-SHELL
-      sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
+      sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config    
       service ssh restart
     SHELL
     srvbdd.vm.provision "shell", path: "install_srvpostgres.sh"
   end
-
 
  # Serveur registry
   config.vm.define "registry-pipeline" do |registry|
@@ -114,12 +113,10 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--cpus", "1"]
     end
     config.vm.provision "shell", inline: <<-SHELL
-      sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
+      sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config    
       service ssh restart
     SHELL
     registry.vm.provision "shell", path: "install_registry.sh"
   end
-
-
 end
 
