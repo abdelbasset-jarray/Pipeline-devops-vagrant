@@ -1,4 +1,3 @@
-
-Pipeline DevOps-demo 
+Pipeline DevOps with Vagrant
 
 
